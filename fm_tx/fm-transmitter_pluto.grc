@@ -53,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [138, 249]
+    coordinate: [152, 324.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -185,29 +185,6 @@ blocks:
     coordinate: [16, 344]
     rotation: 0
     state: enabled
-- name: pluto_sink_0
-  id: pluto_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    attenuation: '10.0'
-    auto_filter: 'True'
-    bandwidth: '20000'
-    buffer_size: '0x8000'
-    comment: ''
-    cyclic: 'False'
-    filter: ''
-    frequency: fm_station
-    interpolation: '2'
-    samplerate: samp_rate
-    uri: ''
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [286, 340]
-    rotation: 0
-    state: disabled
 - name: rational_resampler_xxx_0
   id: rational_resampler_xxx
   parameters:
@@ -254,7 +231,6 @@ connections:
 - [blocks_wavfile_source_0, '0', blocks_add_xx_0, '0']
 - [blocks_wavfile_source_0, '1', blocks_add_xx_0, '1']
 - [rational_resampler_xxx_0, '0', iio_pluto_sink_0, '0']
-- [rational_resampler_xxx_0, '0', pluto_sink_0, '0']
 
 metadata:
   file_format: 1

@@ -73,6 +73,7 @@ blocks:
     range_1: '0'
     range_2: '0'
     sampling_frequency: samp_rate
+    streaming: 'True'
     trigger_condition_ch1: '0'
     trigger_condition_ch2: '0'
     trigger_delay: '0'

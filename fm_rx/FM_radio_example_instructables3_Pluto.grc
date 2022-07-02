@@ -219,12 +219,12 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    auto_filter: 'False'
+    auto_filter: 'True'
     bandwidth: '20000000'
     bbdc: 'True'
     buffer_size: '32768'
     comment: ''
-    filter: /home/analog/filters/AD936x_LP_256kHz_768kSPS.ftr
+    filter: ''
     frequency: freq
     gain1: '''slow_attack'''
     manual_gain1: '64'
