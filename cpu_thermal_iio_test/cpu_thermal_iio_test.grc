@@ -21,7 +21,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Not titled yet
+    title: CPU Temperature
     window_size: ''
   states:
     bus_sink: false
@@ -41,7 +41,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [200, 484.0]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0
@@ -130,7 +130,7 @@ blocks:
     label9: ''
     max: '80.0'
     min: '30.0'
-    name: '""'
+    name: '"CPU Temperature"'
     nconnections: '1'
     type: float
     unit1: ''

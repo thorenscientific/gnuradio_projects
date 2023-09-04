@@ -113,8 +113,8 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: '10'
-    srate: '10'
+    size: '20'
+    srate: '1'
     stemplot: 'False'
     style1: '1'
     style10: '1'
@@ -152,7 +152,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 116.0]
+    coordinate: [560, 28.0]
     rotation: 0
     state: true
 
