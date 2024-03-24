@@ -6,7 +6,7 @@
 #
 # GNU Radio Python Flow Graph
 # Title: Adxl345 Sound Effect Attempt 1
-# GNU Radio version: 3.8.1.0
+# GNU Radio version: 3.8.2.0
 
 from distutils.version import StrictVersion
 

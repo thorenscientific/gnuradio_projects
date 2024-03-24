@@ -6,7 +6,7 @@
 #
 # GNU Radio Python Flow Graph
 # Title: Not titled yet
-# GNU Radio version: 3.8.1.0
+# GNU Radio version: 3.8.2.0
 
 from distutils.version import StrictVersion
 
@@ -123,15 +123,15 @@ class first_m2k(gr.top_block, Qt.QWidget):
 
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win)
-        self.m2k_analog_in_source_0 = m2k.analog_in_source(m2k_ctx, 8192, [True, True], [0, 0], samp_rate, 1, 4, True, True, [0, 0], [0, 0], 0, 0, [0, 0])
+        self.m2k_analog_in_source_0 = m2k.analog_in_source(m2k_ctx, 8192, [True, True], [0, 0], samp_rate, 1, 4, True, True, [0, 0], [0, 0], 0, 0, [0, 0], True)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.m2k_analog_in_source_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.m2k_analog_in_source_0, 1), (self.qtgui_time_sink_x_0, 1))
+        self.connect((self.m2k_analog_in_source_0, 0), (self.qtgui_time_sink_x_0, 0))
 
 
     def closeEvent(self, event):

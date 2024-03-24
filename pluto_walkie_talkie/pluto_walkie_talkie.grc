@@ -53,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 36.0]
+    coordinate: [752, 12.0]
     rotation: 0
     state: enabled
 - name: cutoff
@@ -104,6 +104,18 @@ blocks:
     coordinate: [176, 20.0]
     rotation: 0
     state: enabled
+- name: rx_starve
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 100.0]
+    rotation: 0
+    state: enabled
 - name: samp_rate
   id: variable
   parameters:
@@ -140,6 +152,35 @@ blocks:
     coordinate: [176, 84.0]
     rotation: 0
     state: enabled
+- name: tx_starve
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 100.0]
+    rotation: 0
+    state: enabled
+- name: variable_config_0
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: default
+    option: key
+    section: main
+    type: real
+    value: '0'
+    writeback: None
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1072, 452.0]
+    rotation: 0
+    state: true
 - name: volume
   id: variable
   parameters:
@@ -169,9 +210,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 380.0]
+    coordinate: [472, 332.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -191,7 +232,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 108.0]
+    coordinate: [1056, 100.0]
     rotation: 0
     state: disabled
 - name: analog_sig_source_x_0_0
@@ -266,9 +307,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 356.0]
+    coordinate: [216, 364.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_multiply_const_vxx_0
   id: blocks_multiply_const_vxx
   parameters:
@@ -356,7 +397,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [216, 472.0]
+    coordinate: [72, 520.0]
     rotation: 0
     state: disabled
 - name: iio_attr_source_0
@@ -382,7 +423,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [288, 532.0]
+    coordinate: [376, 556.0]
     rotation: 0
     state: enabled
 - name: iio_pluto_sink_0
@@ -406,7 +447,7 @@ blocks:
     bus_structure: null
     coordinate: [896, 348.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: iio_pluto_source_0
   id: iio_pluto_source
   parameters:
@@ -535,7 +576,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 580.0]
+    coordinate: [760, 636.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -674,7 +715,47 @@ blocks:
     bus_structure: null
     coordinate: [688, 412.0]
     rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_0_1
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '100'
+    fbw: '0'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [864, 244.0]
+    rotation: 0
     state: disabled
+- name: rational_resampler_xxx_0_1_0
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '100'
+    fbw: '0'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 452.0]
+    rotation: 0
+    state: enabled
 - name: rational_resampler_xxx_1
   id: rational_resampler_xxx
   parameters:
@@ -703,7 +784,8 @@ connections:
 - [analog_sig_source_x_0_0, '0', analog_nbfm_tx_0, '0']
 - [analog_sig_source_x_0_0, '0', qtgui_time_sink_x_0, '1']
 - [analog_wfm_rcv_0, '0', rational_resampler_xxx_0, '0']
-- [audio_source_0, '0', analog_nbfm_tx_0, '0']
+- [analog_wfm_rcv_0, '0', rational_resampler_xxx_0_1, '0']
+- [audio_source_0, '0', rational_resampler_xxx_0_1_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_0_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_0_0, '1']
 - [blocks_multiply_const_vxx_0, '0', qtgui_time_sink_x_0, '0']
@@ -717,6 +799,8 @@ connections:
 - [rational_resampler_xxx_0, '0', blocks_null_sink_0, '0']
 - [rational_resampler_xxx_0_0, '0', blocks_null_sink_0_0, '0']
 - [rational_resampler_xxx_0_0, '0', iio_pluto_sink_0, '0']
+- [rational_resampler_xxx_0_1, '0', blocks_multiply_const_vxx_0, '0']
+- [rational_resampler_xxx_0_1_0, '0', analog_nbfm_tx_0, '0']
 - [rational_resampler_xxx_1, '0', low_pass_filter_0, '0']
 
 metadata:

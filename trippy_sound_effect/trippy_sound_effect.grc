@@ -44,6 +44,35 @@ blocks:
     coordinate: [181, 7]
     rotation: 0
     state: enabled
+- name: volume
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 12.0]
+    rotation: 0
+    state: enabled
+- name: analog_const_source_x_0
+  id: analog_const_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: volume
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [392, 148.0]
+    rotation: 0
+    state: true
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -124,9 +153,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [655, 198]
+    coordinate: [824, 88.0]
     rotation: 0
     state: enabled
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [816, 328.0]
+    rotation: 0
+    state: true
 - name: blocks_multiply_xx_0
   id: blocks_multiply_xx
   parameters:
@@ -163,6 +210,42 @@ blocks:
     coordinate: [266, 200]
     rotation: 0
     state: enabled
+- name: blocks_multiply_xx_0_0_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 264.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_xx_0_0_0_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 216.0]
+    rotation: 0
+    state: enabled
 - name: blocks_vco_f_0
   id: blocks_vco_f
   parameters:
@@ -178,7 +261,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [417, 217]
+    coordinate: [392, 212.0]
     rotation: 0
     state: enabled
 - name: blocks_vco_f_0_0
@@ -196,7 +279,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [416, 295]
+    coordinate: [392, 292.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0_0
@@ -231,10 +314,10 @@ blocks:
     entags: 'True'
     grid: 'False'
     gui_hint: ''
-    label1: X Accel
+    label1: Right
     label10: ''
-    label2: Y Accel
-    label3: Z Accel
+    label2: Left
+    label3: Sum
     label4: ''
     label5: ''
     label6: ''
@@ -253,13 +336,13 @@ blocks:
     marker8: '-1'
     marker9: '-1'
     name: '""'
-    nconnections: '2'
+    nconnections: '3'
     size: '1028'
     srate: samp_rate
     stemplot: 'False'
     style1: '1'
     style10: '1'
-    style2: '1'
+    style2: '0'
     style3: '1'
     style4: '1'
     style5: '1'
@@ -285,29 +368,36 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    ylabel: '"Acceleration"'
+    ylabel: '"Trippy, dude!"'
     ymax: '2'
     ymin: '-2'
-    yunit: '"g"'
+    yunit: '"Amplitude"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 333]
+    coordinate: [944, 192.0]
     rotation: 0
     state: enabled
 
 connections:
+- [analog_const_source_x_0, '0', blocks_multiply_xx_0_0_0, '0']
+- [analog_const_source_x_0, '0', blocks_multiply_xx_0_0_0_0, '0']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0_0, '0']
 - [analog_sig_source_x_0_0, '0', blocks_multiply_xx_0, '0']
 - [analog_sig_source_x_0_0, '0', blocks_multiply_xx_0_0, '1']
 - [analog_sig_source_x_0_0_0, '0', blocks_multiply_xx_0, '1']
+- [blocks_add_xx_0, '0', qtgui_time_sink_x_0_0, '2']
 - [blocks_multiply_xx_0, '0', blocks_vco_f_0_0, '0']
 - [blocks_multiply_xx_0_0, '0', blocks_vco_f_0, '0']
-- [blocks_vco_f_0, '0', audio_sink_0, '0']
-- [blocks_vco_f_0, '0', qtgui_time_sink_x_0_0, '0']
-- [blocks_vco_f_0_0, '0', audio_sink_0, '1']
-- [blocks_vco_f_0_0, '0', qtgui_time_sink_x_0_0, '1']
+- [blocks_multiply_xx_0_0_0, '0', audio_sink_0, '1']
+- [blocks_multiply_xx_0_0_0, '0', blocks_add_xx_0, '1']
+- [blocks_multiply_xx_0_0_0, '0', qtgui_time_sink_x_0_0, '1']
+- [blocks_multiply_xx_0_0_0_0, '0', audio_sink_0, '0']
+- [blocks_multiply_xx_0_0_0_0, '0', blocks_add_xx_0, '0']
+- [blocks_multiply_xx_0_0_0_0, '0', qtgui_time_sink_x_0_0, '0']
+- [blocks_vco_f_0, '0', blocks_multiply_xx_0_0_0_0, '1']
+- [blocks_vco_f_0_0, '0', blocks_multiply_xx_0_0_0, '1']
 
 metadata:
   file_format: 1
